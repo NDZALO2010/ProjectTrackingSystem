@@ -1,0 +1,68 @@
+[
+  {
+    "id": "user001",
+    "username": "admin",
+    "password": "admin123",
+    "email": "admin@pts.com",
+    "fullName": "System Administrator",
+    "role": "admin",
+    "department": "IT",
+    "avatar": "👨‍💼",
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "user002",
+    "username": "pm_ndzalo",
+    "password": "pm123",
+    "email": "ndzalo.mathebula@pts.com",
+    "fullName": "Ndzalo Mathebula",
+    "role": "project_manager",
+    "department": "Engineering",
+    "avatar": "👨‍💻",
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "user003",
+    "username": "dev_nobela",
+    "password": "dev123",
+    "email": "visionary.nobela@pts.com",
+    "fullName": "Visionary Nobela",
+    "role": "team_member",
+    "department": "Engineering",
+    "avatar": "👩‍💻",
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "user004",
+    "username": "dev_mike",
+    "password": "dev123",
+    "email": "mike.johnson@pts.com",
+    "fullName": "Mike Johnson",
+    "role": "team_member",
+    "department": "Engineering",
+    "avatar": "👨‍🔧",
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "user005",
+    "username": "exec_lisa",
+    "password": "exec123",
+    "email": "lisa.brown@pts.com",
+    "fullName": "Lisa Brown",
+    "role": "executive",
+    "department": "Management",
+    "avatar": "👩‍💼",
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "user006",
+    "username": "head_david",
+    "password": "head123",
+    "email": "david.wilson@pts.com",
+    "fullName": "David Wilson",
+    "role": "department_head",
+    "department": "Engineering",
+    "avatar": "👨‍🏫",
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  }
+]

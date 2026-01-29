@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Project Tracking System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="logo">📊</span>
+            <span class="brand-name">Project Tracking System</span>
+        </div>
+        <div class="nav-menu">
+            <a href="dashboard.html" class="nav-link active">Dashboard</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="tasks.html" class="nav-link">Tasks</a>
+            <a href="resources.html" class="nav-link">Resources</a>
+            <a href="reports.html" class="nav-link">Reports</a>
+        </div>
+        <div class="nav-user">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                🌙
+            </button>
+            <span id="userAvatar" class="user-avatar">👤</span>
+            <span id="userName" class="user-name">User</span>
+            <button id="logoutBtn" class="btn btn-secondary btn-sm">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Dashboard</h1>
+            <p>Overview of all projects and activities</p>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="stats-grid">
+            <!-- Total Projects Card -->
+            <div class="stat-card">
+                <div class="stat-icon">📁</div>
+                <div class="stat-content">
+                    <h3 id="totalProjects">0</h3>
+                    <p>Total Projects</p>
+                </div>
+            </div>
+
+            <!-- Active Projects Card -->
+            <div class="stat-card">
+                <div class="stat-icon">🚀</div>
+                <div class="stat-content">
+                    <h3 id="activeProjects">0</h3>
+                    <p>Active Projects</p>
+                </div>
+            </div>
+
+            <!-- Total Tasks Card -->
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-content">
+                    <h3 id="totalTasks">0</h3>
+                    <p>Total Tasks</p>
+                </div>
+            </div>
+
+            <!-- Completed Tasks Card -->
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-content">
+                    <h3 id="completedTasks">0</h3>
+                    <p>Completed Tasks</p>
+                </div>
+            </div>
+
+            <!-- Budget Card -->
+            <div class="stat-card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-content">
+                    <h3 id="totalBudget">$0</h3>
+                    <p>Total Budget</p>
+                </div>
+            </div>
+
+            <!-- Budget Spent Card -->
+            <div class="stat-card">
+                <div class="stat-icon">💸</div>
+                <div class="stat-content">
+                    <h3 id="budgetSpent">$0</h3>
+                    <p>Budget Spent</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Projects Section -->
+        <div class="section">
+            <div class="section-header">
+                <h2>Recent Projects</h2>
+                <a href="projects.html" class="btn btn-secondary btn-sm">View All</a>
+            </div>
+            <div id="recentProjects" class="projects-list">
+                <!-- Projects will be loaded here dynamically -->
+                <div class="loading">Loading projects...</div>
+            </div>
+        </div>
+
+        <!-- Recent Tasks Section -->
+        <div class="section">
+            <div class="section-header">
+                <h2>Recent Tasks</h2>
+                <a href="tasks.html" class="btn btn-secondary btn-sm">View All</a>
+            </div>
+            <div id="recentTasks" class="tasks-list">
+                <!-- Tasks will be loaded here dynamically -->
+                <div class="loading">Loading tasks...</div>
+            </div>
+        </div>
+
+        <!-- Quick Actions Section -->
+        <div class="section">
+            <h2>Quick Actions</h2>
+            <div class="quick-actions">
+                <button onclick="window.location.href='projects.html'" class="action-btn">
+                    <span class="action-icon">➕</span>
+                    <span>Create Project</span>
+                </button>
+                <button onclick="window.location.href='tasks.html'" class="action-btn">
+                    <span class="action-icon">📝</span>
+                    <span>Add Task</span>
+                </button>
+                <button onclick="window.location.href='resources.html'" class="action-btn">
+                    <span class="action-icon">👥</span>
+                    <span>Manage Resources</span>
+                </button>
+                <button onclick="window.location.href='reports.html'" class="action-btn">
+                    <span class="action-icon">📊</span>
+                    <span>View Reports</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/utils.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        /**
+         * Dashboard Initialization
+         * This script loads and displays dashboard statistics and recent items
+         */
+        
+        // Check if user is logged in when page loads
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Verify user authentication
+            if (!checkAuth()) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Display user information in navigation
+            displayUserInfo();
+
+            // Load dashboard data
+            await loadDashboardStats();
+            await loadRecentProjects();
+            await loadRecentTasks();
+
+            // Set up logout functionality
+            document.getElementById('logoutBtn').addEventListener('click', logout);
+        });
+
+        /**
+         * Load and display dashboard statistics
+         */
+        async function loadDashboardStats() {
+            try {
+                const stats = await fetchAPI('/api/reports/dashboard');
+                
+                // Update statistics in the UI
+                document.getElementById('totalProjects').textContent = stats.totalProjects;
+                document.getElementById('activeProjects').textContent = stats.activeProjects;
+                document.getElementById('totalTasks').textContent = stats.totalTasks;
+                document.getElementById('completedTasks').textContent = stats.completedTasks;
+                document.getElementById('totalBudget').textContent = formatCurrency(stats.totalBudget);
+                document.getElementById('budgetSpent').textContent = formatCurrency(stats.budgetSpent);
+            } catch (error) {
+                console.error('Error loading dashboard stats:', error);
+                showNotification('Failed to load dashboard statistics', 'error');
+            }
+        }
+
+        /**
+         * Load and display recent projects
+         */
+        async function loadRecentProjects() {
+            try {
+                const projects = await fetchAPI('/api/projects');
+                const recentProjects = projects.slice(0, 3); // Get first 3 projects
+                
+                const container = document.getElementById('recentProjects');
+                
+                if (recentProjects.length === 0) {
+                    container.innerHTML = '<p class="empty-state">No projects found</p>';
+                    return;
+                }
+                
+                // Build HTML for project cards
+                container.innerHTML = recentProjects.map(project => `
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>${escapeHtml(project.name)}</h3>
+                            <span class="badge badge-${project.status}">${project.status}</span>
+                        </div>
+                        <p class="project-description">${escapeHtml(project.description)}</p>
+                        <div class="project-meta">
+                            <span>📅 ${formatDate(project.startDate)} - ${formatDate(project.endDate)}</span>
+                            <span>💰 ${formatCurrency(project.budget)}</span>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading recent projects:', error);
+                document.getElementById('recentProjects').innerHTML = 
+                    '<p class="error-state">Failed to load projects</p>';
+            }
+        }
+
+        /**
+         * Load and display recent tasks
+         */
+        async function loadRecentTasks() {
+            try {
+                const tasks = await fetchAPI('/api/tasks');
+                const recentTasks = tasks.slice(0, 5); // Get first 5 tasks
+                
+                const container = document.getElementById('recentTasks');
+                
+                if (recentTasks.length === 0) {
+                    container.innerHTML = '<p class="empty-state">No tasks found</p>';
+                    return;
+                }
+                
+                // Build HTML for task items
+                container.innerHTML = recentTasks.map(task => `
+                    <div class="task-item">
+                        <div class="task-info">
+                            <h4>${escapeHtml(task.title)}</h4>
+                            <p>${escapeHtml(task.description)}</p>
+                        </div>
+                        <div class="task-meta">
+                            <span class="badge badge-${task.status}">${task.status}</span>
+                            <span class="badge badge-priority-${task.priority}">${task.priority}</span>
+                            <span>Due: ${formatDate(task.dueDate)}</span>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading recent tasks:', error);
+                document.getElementById('recentTasks').innerHTML = 
+                    '<p class="error-state">Failed to load tasks</p>';
+            }
+        }
+    </script>
+</body>
+</html>

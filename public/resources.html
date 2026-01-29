@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - Project Tracking System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="logo">📊</span>
+            <span class="brand-name">Project Tracking System</span>
+        </div>
+        <div class="nav-menu">
+            <a href="dashboard.html" class="nav-link">Dashboard</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="tasks.html" class="nav-link">Tasks</a>
+            <a href="resources.html" class="nav-link active">Resources</a>
+            <a href="reports.html" class="nav-link">Reports</a>
+        </div>
+        <div class="nav-user">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                🌙
+            </button>
+            <span id="userAvatar" class="user-avatar">👤</span>
+            <span id="userName" class="user-name">User</span>
+            <button id="logoutBtn" class="btn btn-secondary btn-sm">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div>
+                <h1>Resource Management</h1>
+                <p>Allocate and track team member resources across projects</p>
+            </div>
+            <button id="allocateResourceBtn" class="btn btn-primary">
+                ➕ Allocate Resource
+            </button>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-content">
+                    <h3 id="totalResources">0</h3>
+                    <p>Total Allocations</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">⏱️</div>
+                <div class="stat-content">
+                    <h3 id="totalHours">0</h3>
+                    <p>Total Hours Allocated</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-content">
+                    <h3 id="avgUtilization">0%</h3>
+                    <p>Average Utilization</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">💵</div>
+                <div class="stat-content">
+                    <h3 id="totalCost">$0</h3>
+                    <p>Total Resource Cost</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="filters-section">
+            <div class="filter-group">
+                <label for="projectFilter">Project:</label>
+                <select id="projectFilter" class="filter-select">
+                    <option value="all">All Projects</option>
+                    <!-- Projects will be loaded dynamically -->
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="statusFilter">Status:</label>
+                <select id="statusFilter" class="filter-select">
+                    <option value="all">All Status</option>
+                    <option value="active">Active</option>
+                    <option value="planned">Planned</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search resources...">
+            </div>
+        </div>
+
+        <!-- Resources Table -->
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Team Member</th>
+                        <th>Project</th>
+                        <th>Role</th>
+                        <th>Allocated Hours</th>
+                        <th>Used Hours</th>
+                        <th>Utilization</th>
+                        <th>Rate/Hour</th>
+                        <th>Total Cost</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="resourcesTableBody">
+                    <!-- Resources will be loaded here dynamically -->
+                    <tr>
+                        <td colspan="10" class="loading">Loading resources...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Team Utilization Chart Section -->
+        <div class="section">
+            <h2>Team Member Utilization</h2>
+            <div id="utilizationChart" class="utilization-chart">
+                <!-- Utilization bars will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Allocate/Edit Resource Modal -->
+    <div id="resourceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Allocate Resource</h2>
+                <button class="close-btn" onclick="closeResourceModal()">&times;</button>
+            </div>
+            <form id="resourceForm">
+                <input type="hidden" id="resourceId">
+                
+                <div class="form-group">
+                    <label for="resourceProject">Project *</label>
+                    <select id="resourceProject" required>
+                        <option value="">Select a project</option>
+                        <!-- Projects will be loaded dynamically -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="resourceUser">Team Member *</label>
+                    <select id="resourceUser" required>
+                        <option value="">Select team member</option>
+                        <!-- Users will be loaded dynamically -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="resourceRole">Role *</label>
+                    <input type="text" id="resourceRole" required placeholder="e.g., Frontend Developer, Designer">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="resourceAllocatedHours">Allocated Hours *</label>
+                        <input type="number" id="resourceAllocatedHours" min="0" step="1" required placeholder="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="resourceUsedHours">Used Hours</label>
+                        <input type="number" id="resourceUsedHours" min="0" step="0.5" value="0" placeholder="0">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="resourceHourlyRate">Hourly Rate ($) *</label>
+                    <input type="number" id="resourceHourlyRate" min="0" step="1" required placeholder="0">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="resourceStartDate">Start Date *</label>
+                        <input type="date" id="resourceStartDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="resourceEndDate">End Date *</label>
+                        <input type="date" id="resourceEndDate" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="resourceStatus">Status *</label>
+                    <select id="resourceStatus" required>
+                        <option value="planned">Planned</option>
+                        <option value="active">Active</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeResourceModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Allocation</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/utils.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/resources.js"></script>
+</body>
+</html>

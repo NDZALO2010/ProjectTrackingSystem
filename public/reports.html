@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Project Tracking System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="logo">📊</span>
+            <span class="brand-name">Project Tracking System</span>
+        </div>
+        <div class="nav-menu">
+            <a href="dashboard.html" class="nav-link">Dashboard</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="tasks.html" class="nav-link">Tasks</a>
+            <a href="resources.html" class="nav-link">Resources</a>
+            <a href="reports.html" class="nav-link active">Reports</a>
+        </div>
+        <div class="nav-user">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                🌙
+            </button>
+            <span id="userAvatar" class="user-avatar">👤</span>
+            <span id="userName" class="user-name">User</span>
+            <button id="logoutBtn" class="btn btn-secondary btn-sm">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div>
+                <h1>Reports & Analytics</h1>
+                <p>Comprehensive insights into project performance and team productivity</p>
+            </div>
+        </div>
+
+        <!-- Report Type Selector -->
+        <div class="report-selector">
+            <button class="report-tab active" data-report="overview">📊 Overview</button>
+            <button class="report-tab" data-report="projects">📁 Project Reports</button>
+            <button class="report-tab" data-report="tasks">✅ Task Reports</button>
+            <button class="report-tab" data-report="resources">👥 Resource Reports</button>
+            <button class="report-tab" data-report="budget">💰 Budget Reports</button>
+        </div>
+
+        <!-- Overview Report -->
+        <div id="overviewReport" class="report-section active">
+            <h2>System Overview</h2>
+            
+            <!-- Key Metrics -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📁</div>
+                    <div class="stat-content">
+                        <h3 id="overviewTotalProjects">0</h3>
+                        <p>Total Projects</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🚀</div>
+                    <div class="stat-content">
+                        <h3 id="overviewActiveProjects">0</h3>
+                        <p>Active Projects</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-content">
+                        <h3 id="overviewCompletedTasks">0</h3>
+                        <p>Completed Tasks</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⏱️</div>
+                    <div class="stat-content">
+                        <h3 id="overviewInProgressTasks">0</h3>
+                        <p>In Progress Tasks</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Budget Overview -->
+            <div class="report-card">
+                <h3>Budget Overview</h3>
+                <div class="budget-overview">
+                    <div class="budget-item">
+                        <span class="budget-label">Total Budget:</span>
+                        <span id="overviewTotalBudget" class="budget-value">$0</span>
+                    </div>
+                    <div class="budget-item">
+                        <span class="budget-label">Budget Spent:</span>
+                        <span id="overviewBudgetSpent" class="budget-value">$0</span>
+                    </div>
+                    <div class="budget-item">
+                        <span class="budget-label">Remaining:</span>
+                        <span id="overviewBudgetRemaining" class="budget-value">$0</span>
+                    </div>
+                    <div class="budget-progress">
+                        <div id="overviewBudgetBar" class="progress-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Status Distribution -->
+            <div class="report-card">
+                <h3>Project Status Distribution</h3>
+                <div id="projectStatusChart" class="chart-container">
+                    <!-- Chart will be rendered here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Reports -->
+        <div id="projectsReport" class="report-section">
+            <h2>Project Performance Reports</h2>
+            
+            <div class="form-group">
+                <label for="projectSelect">Select Project:</label>
+                <select id="projectSelect" class="filter-select">
+                    <option value="">Choose a project</option>
+                    <!-- Projects will be loaded dynamically -->
+                </select>
+            </div>
+
+            <div id="projectReportContent" class="report-content">
+                <p class="empty-state">Please select a project to view its report</p>
+            </div>
+        </div>
+
+        <!-- Task Reports -->
+        <div id="tasksReport" class="report-section">
+            <h2>Task Analysis Reports</h2>
+            
+            <!-- Task Statistics -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📋</div>
+                    <div class="stat-content">
+                        <h3 id="tasksTotalTasks">0</h3>
+                        <p>Total Tasks</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-content">
+                        <h3 id="tasksCompleted">0</h3>
+                        <p>Completed</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🚀</div>
+                    <div class="stat-content">
+                        <h3 id="tasksInProgress">0</h3>
+                        <p>In Progress</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⏳</div>
+                    <div class="stat-content">
+                        <h3 id="tasksPending">0</h3>
+                        <p>Pending</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task Priority Breakdown -->
+            <div class="report-card">
+                <h3>Tasks by Priority</h3>
+                <div id="taskPriorityChart" class="chart-container">
+                    <!-- Chart will be rendered here -->
+                </div>
+            </div>
+
+            <!-- Overdue Tasks -->
+            <div class="report-card">
+                <h3>Overdue Tasks</h3>
+                <div id="overdueTasks" class="tasks-list">
+                    <!-- Overdue tasks will be listed here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Resource Reports -->
+        <div id="resourcesReport" class="report-section">
+            <h2>Resource Utilization Reports</h2>
+            
+            <!-- Resource Statistics -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <h3 id="resourcesTotalAllocations">0</h3>
+                        <p>Total Allocations</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⏱️</div>
+                    <div class="stat-content">
+                        <h3 id="resourcesTotalHours">0</h3>
+                        <p>Total Hours</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-content">
+                        <h3 id="resourcesAvgUtilization">0%</h3>
+                        <p>Avg Utilization</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💵</div>
+                    <div class="stat-content">
+                        <h3 id="resourcesTotalCost">$0</h3>
+                        <p>Total Cost</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member Utilization -->
+            <div class="report-card">
+                <h3>Team Member Utilization</h3>
+                <div id="teamUtilizationChart" class="chart-container">
+                    <!-- Chart will be rendered here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Budget Reports -->
+        <div id="budgetReport" class="report-section">
+            <h2>Budget Analysis Reports</h2>
+            
+            <!-- Budget Summary -->
+            <div class="report-card">
+                <h3>Overall Budget Summary</h3>
+                <div class="budget-summary">
+                    <div class="budget-row">
+                        <span>Total Allocated Budget:</span>
+                        <span id="budgetTotalAllocated" class="budget-amount">$0</span>
+                    </div>
+                    <div class="budget-row">
+                        <span>Total Spent:</span>
+                        <span id="budgetTotalSpent" class="budget-amount">$0</span>
+                    </div>
+                    <div class="budget-row">
+                        <span>Remaining Budget:</span>
+                        <span id="budgetRemaining" class="budget-amount">$0</span>
+                    </div>
+                    <div class="budget-row">
+                        <span>Budget Utilization:</span>
+                        <span id="budgetUtilization" class="budget-amount">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Budget Breakdown -->
+            <div class="report-card">
+                <h3>Budget by Project</h3>
+                <div id="projectBudgetTable" class="table-container">
+                    <!-- Budget table will be rendered here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/utils.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/reports.js"></script>
+</body>
+</html>

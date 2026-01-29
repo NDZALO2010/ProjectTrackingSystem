@@ -1,0 +1,237 @@
+[
+  {
+    "id": "task001",
+    "projectId": "proj001",
+    "title": "Create wireframes for homepage",
+    "description": "Design wireframes for the new homepage layout including header, hero section, and footer",
+    "status": "completed",
+    "priority": "high",
+    "assignedTo": "user003",
+    "createdBy": "user002",
+    "startDate": "2024-01-15",
+    "dueDate": "2024-01-25",
+    "completedDate": "2024-01-24",
+    "estimatedHours": 16,
+    "actualHours": 14,
+    "tags": [
+      "design",
+      "ui/ux"
+    ],
+    "dependencies": [],
+    "createdAt": "2024-01-15T10:00:00.000Z",
+    "updatedAt": "2024-01-24T15:30:00.000Z"
+  },
+  {
+    "id": "task002",
+    "projectId": "proj001",
+    "title": "Implement responsive navigation - Updated",
+    "description": "Build responsive navigation menu with mobile hamburger menu and desktop dropdown",
+    "status": "completed",
+    "priority": "high",
+    "assignedTo": "user004",
+    "createdBy": "user002",
+    "startDate": "2024-01-26",
+    "dueDate": "2024-02-05",
+    "completedDate": null,
+    "estimatedHours": 20,
+    "actualHours": 18,
+    "tags": [
+      "development",
+      "frontend"
+    ],
+    "dependencies": [
+      "task001"
+    ],
+    "createdAt": "2024-01-26T09:00:00.000Z",
+    "updatedAt": "2026-01-25T10:42:00.525Z"
+  },
+  {
+    "id": "task003",
+    "projectId": "proj001",
+    "title": "Set up content management system",
+    "description": "Configure CMS for easy content updates by marketing team",
+    "status": "pending",
+    "priority": "medium",
+    "assignedTo": "user004",
+    "createdBy": "user002",
+    "startDate": "2024-02-06",
+    "dueDate": "2024-02-20",
+    "completedDate": null,
+    "estimatedHours": 24,
+    "actualHours": 0,
+    "tags": [
+      "development",
+      "backend"
+    ],
+    "dependencies": [
+      "task002"
+    ],
+    "createdAt": "2024-01-20T14:00:00.000Z",
+    "updatedAt": "2024-01-20T14:00:00.000Z"
+  },
+  {
+    "id": "task004",
+    "projectId": "proj001",
+    "title": "Performance optimization",
+    "description": "Optimize images, implement lazy loading, and improve page load times",
+    "status": "pending",
+    "priority": "medium",
+    "assignedTo": "user003",
+    "createdBy": "user002",
+    "startDate": "2024-03-01",
+    "dueDate": "2024-03-15",
+    "completedDate": null,
+    "estimatedHours": 16,
+    "actualHours": 0,
+    "tags": [
+      "optimization",
+      "performance"
+    ],
+    "dependencies": [
+      "task003"
+    ],
+    "createdAt": "2024-01-20T14:30:00.000Z",
+    "updatedAt": "2024-01-20T14:30:00.000Z"
+  },
+  {
+    "id": "task005",
+    "projectId": "proj002",
+    "title": "Define app requirements",
+    "description": "Document all functional and non-functional requirements for the mobile app",
+    "status": "completed",
+    "priority": "high",
+    "assignedTo": "user002",
+    "createdBy": "user002",
+    "startDate": "2024-02-01",
+    "dueDate": "2024-02-10",
+    "completedDate": "2024-02-09",
+    "estimatedHours": 20,
+    "actualHours": 18,
+    "tags": [
+      "planning",
+      "documentation"
+    ],
+    "dependencies": [],
+    "createdAt": "2024-02-01T09:00:00.000Z",
+    "updatedAt": "2024-02-09T16:00:00.000Z"
+  },
+  {
+    "id": "task006",
+    "projectId": "proj002",
+    "title": "Design app screens",
+    "description": "Create high-fidelity mockups for all app screens including onboarding, dashboard, and settings",
+    "status": "in-progress",
+    "priority": "high",
+    "assignedTo": "user003",
+    "createdBy": "user002",
+    "startDate": "2024-02-11",
+    "dueDate": "2024-03-10",
+    "completedDate": null,
+    "estimatedHours": 40,
+    "actualHours": 25,
+    "tags": [
+      "design",
+      "ui/ux",
+      "mobile"
+    ],
+    "dependencies": [
+      "task005"
+    ],
+    "createdAt": "2024-02-11T10:00:00.000Z",
+    "updatedAt": "2024-02-28T14:20:00.000Z"
+  },
+  {
+    "id": "task007",
+    "projectId": "proj002",
+    "title": "Set up development environment",
+    "description": "Configure React Native development environment for iOS and Android",
+    "status": "completed",
+    "priority": "high",
+    "assignedTo": "user004",
+    "createdBy": "user002",
+    "startDate": "2024-02-05",
+    "dueDate": "2024-02-12",
+    "completedDate": "2024-02-11",
+    "estimatedHours": 8,
+    "actualHours": 10,
+    "tags": [
+      "setup",
+      "development"
+    ],
+    "dependencies": [],
+    "createdAt": "2024-02-05T11:00:00.000Z",
+    "updatedAt": "2024-02-11T17:00:00.000Z"
+  },
+  {
+    "id": "task008",
+    "projectId": "proj002",
+    "title": "Implement authentication flow",
+    "description": "Build login, registration, and password reset functionality",
+    "status": "pending",
+    "priority": "high",
+    "assignedTo": "user004",
+    "createdBy": "user002",
+    "startDate": "2024-03-11",
+    "dueDate": "2024-03-25",
+    "completedDate": null,
+    "estimatedHours": 30,
+    "actualHours": 0,
+    "tags": [
+      "development",
+      "authentication",
+      "security"
+    ],
+    "dependencies": [
+      "task006",
+      "task007"
+    ],
+    "createdAt": "2024-02-10T13:00:00.000Z",
+    "updatedAt": "2024-02-10T13:00:00.000Z"
+  },
+  {
+    "id": "task009",
+    "projectId": "proj003",
+    "title": "Audit existing database",
+    "description": "Review current database structure, identify data quality issues, and document findings",
+    "status": "pending",
+    "priority": "high",
+    "assignedTo": "user004",
+    "createdBy": "user002",
+    "startDate": "2024-03-01",
+    "dueDate": "2024-03-10",
+    "completedDate": null,
+    "estimatedHours": 24,
+    "actualHours": 0,
+    "tags": [
+      "database",
+      "audit"
+    ],
+    "dependencies": [],
+    "createdAt": "2024-02-20T13:00:00.000Z",
+    "updatedAt": "2024-02-20T13:00:00.000Z"
+  },
+  {
+    "id": "task010",
+    "projectId": "proj003",
+    "title": "Design new database schema",
+    "description": "Create optimized database schema for cloud infrastructure",
+    "status": "pending",
+    "priority": "high",
+    "assignedTo": "user004",
+    "createdBy": "user002",
+    "startDate": "2024-03-11",
+    "dueDate": "2024-03-20",
+    "completedDate": null,
+    "estimatedHours": 20,
+    "actualHours": 0,
+    "tags": [
+      "database",
+      "design"
+    ],
+    "dependencies": [
+      "task009"
+    ],
+    "createdAt": "2024-02-20T13:30:00.000Z",
+    "updatedAt": "2024-02-20T13:30:00.000Z"
+  }
+]

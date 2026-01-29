@@ -1,0 +1,23 @@
+{
+  "name": "project-tracking-system",
+  "version": "1.0.0",
+  "description": "A comprehensive web-based Project Tracking System for managing projects, tasks, resources, and team performance",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "project-management",
+    "task-tracking",
+    "resource-management",
+    "reporting"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5"
+  }
+}

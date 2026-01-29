@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Tracking System - Login</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="login-page">
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle theme-toggle-login" onclick="toggleTheme()" aria-label="Toggle theme">
+        🌙
+    </button>
+    
+    <!-- Login Container -->
+    <div class="login-container">
+        <!-- Login Card -->
+        <div class="login-card">
+            <!-- Header Section -->
+            <div class="login-header">
+                <div class="logo">📊</div>
+                <h1>Project Tracking System</h1>
+                <p>Manage your projects efficiently</p>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="login-form">
+                <!-- Username Input -->
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        placeholder="Enter your username"
+                        required
+                        autocomplete="username"
+                    >
+                </div>
+
+                <!-- Password Input -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Enter your password"
+                        required
+                        autocomplete="current-password"
+                    >
+                </div>
+
+                <!-- Error Message Display -->
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+                <!-- Login Button -->
+                <button type="submit" class="btn btn-primary btn-block">
+                    Login
+                </button>
+            </form>
+
+            <!-- Demo Credentials Section -->
+            <div class="demo-credentials">
+                <h3>Demo Credentials</h3>
+                <div class="credentials-grid">
+                    <div class="credential-item">
+                        <strong>Admin:</strong>
+                        <span>admin / admin123</span>
+                    </div>
+                    <div class="credential-item">
+                        <strong>Project Manager:</strong>
+                        <span>pm_ndzalo / pm123</span>
+                    </div>
+                    <div class="credential-item">
+                        <strong>Team Member:</strong>
+                        <span>dev_nobela / dev123</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="login-footer">
+            <p>&copy; Project Tracking System. All rights reserved.</p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
