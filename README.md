@@ -223,10 +223,6 @@ For production use, implement:
 2. Modify API endpoints to handle new fields
 3. Update frontend to display new data
 
-## License
-
-MIT License - Feel free to use and modify as needed.
-
 ## Contributing
 
 This is a demonstration project. Feel free to fork and enhance!
