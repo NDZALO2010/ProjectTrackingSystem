@@ -2,7 +2,7 @@
 
 A comprehensive web-based application for managing projects, tasks, resources, and team performance. Built with simplicity and readability in mind.
 
-## 📋 Features
+## Features
 
 ### Core Functionality
 - **Project Management**: Create, configure, and monitor projects from initiation to closure
@@ -20,7 +20,7 @@ A comprehensive web-based application for managing projects, tasks, resources, a
 - **Executives**: High-level reporting and analytics
 - **System Administrators**: User and system configuration
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js (version 14 or higher)
@@ -52,14 +52,56 @@ A comprehensive web-based application for managing projects, tasks, resources, a
 - Password: `admin123`
 
 **Project Manager:**
-- Username: `pm_john`
+- Username: `pm_ndzalo`
 - Password: `pm123`
 
 **Team Member:**
-- Username: `dev_sarah`
+- Username: `dev_nobela`
 - Password: `dev123`
 
-## 📁 Project Structure
+## Technology Stack
+
+### Backend Technologies
+- **Node.js** - JavaScript runtime environment
+- **Express.js** (v4.18.2) - Web application framework for handling HTTP requests and routing
+- **body-parser** (v1.20.2) - Middleware for parsing JSON request bodies
+- **CORS** (v2.8.5) - Middleware for enabling Cross-Origin Resource Sharing
+- **File System (fs)** - Node.js built-in module for reading/writing JSON files as database
+
+### Frontend Technologies
+- **HTML5** - Markup language for structure
+  - Multiple pages: index.html, dashboard.html, projects.html, tasks.html, resources.html, reports.html
+- **CSS3** - Styling (styles.css)
+  - Custom CSS with theme support (light/dark mode)
+- **Vanilla JavaScript** - No frameworks, pure JavaScript
+  - Modular JS files: app.js, auth.js, projects.js, tasks.js, resources.js, reports.js, utils.js
+  - DOM manipulation
+  - Fetch API for HTTP requests
+  - Event handling
+
+### Data Storage
+- **JSON Files** - File-based database
+  - users.json
+  - projects.json
+  - tasks.json
+  - resources.json
+
+### Architecture Pattern
+- **RESTful API** - Backend provides REST endpoints
+- **Client-Server Architecture** - Separation between frontend and backend
+- **MVC-like Pattern** - Separation of concerns in code organization
+
+### Development Tools
+- **npm** - Package manager
+
+### Key Characteristics
+- **No Build Process** - Runs directly without compilation
+- **No Frontend Framework** - Pure vanilla JavaScript (no React, Vue, Angular, etc.)
+- **Simple & Readable** - Designed for clarity and maintainability
+- **Lightweight** - Only 3 backend dependencies
+- **Traditional Architecture** - Server-rendered HTML with client-side JavaScript enhancement
+
+## Project Structure
 
 ```
 project-tracking-system/
@@ -90,7 +132,7 @@ project-tracking-system/
     └── resources.json    # Resource allocations
 ```
 
-## 🔧 API Endpoints
+## API Endpoints
 
 ### Authentication
 - `POST /api/login` - User login
@@ -119,7 +161,7 @@ project-tracking-system/
 - `GET /api/reports/dashboard` - Get dashboard statistics
 - `GET /api/reports/project-progress/:projectId` - Get project progress
 
-## 💡 Usage Guide
+## Usage Guide
 
 ### Creating a New Project
 1. Log in to the system
@@ -142,7 +184,7 @@ project-tracking-system/
 3. Select specific project for detailed progress
 4. Export reports as needed
 
-## 🎨 Code Philosophy
+## Code Philosophy
 
 This project is built with the following principles:
 
@@ -152,7 +194,7 @@ This project is built with the following principles:
 - **Maintainability**: Well-structured code that's easy to modify
 - **Human-Friendly**: Logic that makes sense to developers
 
-## 🔒 Security Notes
+## Security Notes
 
 **Important**: This is a demonstration system with basic security:
 - Passwords are stored in plain text (use hashing in production)
@@ -168,7 +210,7 @@ For production use, implement:
 - Rate limiting
 - Proper error handling
 
-## 🛠️ Customization
+## Customization
 
 ### Adding New Features
 1. Add API endpoint in `server.js`
@@ -181,14 +223,14 @@ For production use, implement:
 2. Modify API endpoints to handle new fields
 3. Update frontend to display new data
 
-## 📝 License
+## License
 
 MIT License - Feel free to use and modify as needed.
 
-## 🤝 Contributing
+## Contributing
 
 This is a demonstration project. Feel free to fork and enhance!
 
-## 📞 Support
+## Support
 
 For questions or issues, please refer to the code comments which explain each function's purpose and logic.
